@@ -41,83 +41,81 @@ export default function Contact() {
     >
       <div className="max-w-7xl mx-auto">
 
+        {/* Heading */}
         <div className="text-center mb-14">
 
-          <p className="text-yellow-500 font-semibold">
+          <p className="text-yellow-500 font-bold uppercase tracking-wider">
             CONTACT US
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold mt-3">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-3">
             Let's Work Together
           </h2>
 
-          <p className="text-gray-600 mt-5">
+          <p className="text-gray-600 mt-5 text-lg max-w-2xl mx-auto">
             Have an electrical project? Contact Davies Electrical Solutions today.
           </p>
 
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        {/* Contact Cards */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
 
           {/* Phone */}
+          <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition">
 
-          <div className="bg-white p-8 rounded-3xl shadow">
+            <Phone className="text-yellow-500 mb-5" size={38} />
 
-            <Phone className="text-yellow-500 mb-5" size={35} />
-
-            <h3 className="font-bold text-xl">
+            <h3 className="text-2xl font-bold text-gray-900">
               Call Us
             </h3>
 
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-600 mt-3">
               {settings.phone}
             </p>
 
           </div>
 
           {/* Email */}
+          <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition">
 
-          <div className="bg-white p-8 rounded-3xl shadow">
+            <Mail className="text-yellow-500 mb-5" size={38} />
 
-            <Mail className="text-yellow-500 mb-5" size={35} />
-
-            <h3 className="font-bold text-xl">
+            <h3 className="text-2xl font-bold text-gray-900">
               Email
             </h3>
 
-            <p className="text-gray-600 mt-2 break-all">
+            <p className="text-gray-600 mt-3 break-all">
               {settings.email}
             </p>
 
           </div>
 
           {/* Address */}
+          <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition">
 
-          <div className="bg-white p-8 rounded-3xl shadow">
+            <MapPin className="text-yellow-500 mb-5" size={38} />
 
-            <MapPin className="text-yellow-500 mb-5" size={35} />
-
-            <h3 className="font-bold text-xl">
+            <h3 className="text-2xl font-bold text-gray-900">
               Address
             </h3>
 
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-600 mt-3">
               {settings.address}
             </p>
 
           </div>
 
           {/* Business Hours */}
+          <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition">
 
-          <div className="bg-white p-8 rounded-3xl shadow">
+            <Clock className="text-yellow-500 mb-5" size={38} />
 
-            <Clock className="text-yellow-500 mb-5" size={35} />
-
-            <h3 className="font-bold text-xl">
+            <h3 className="text-2xl font-bold text-gray-900">
               Business Hours
             </h3>
 
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-600 mt-3">
               {settings.businessHours}
             </p>
 

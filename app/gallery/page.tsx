@@ -1,101 +1,69 @@
-import Image from "next/image";
+"use client";
 
-const galleryImages = [
-  {
-    id: 1,
-    image: "/images/gallery/gallery1.jpg",
-    title: "House Wiring",
-  },
-  {
-    id: 2,
-    image: "/images/gallery/gallery2.jpg",
-    title: "Electrical Installation",
-  },
-  {
-    id: 3,
-    image: "/images/gallery/gallery3.jpg",
-    title: "Distribution Board",
-  },
-  {
-    id: 4,
-    image: "/images/gallery/gallery4.jpg",
-    title: "Solar Installation",
-  },
-  {
-    id: 5,
-    image: "/images/gallery/gallery5.jpg",
-    title: "Lighting Installation",
-  },
-  {
-    id: 6,
-    image: "/images/gallery/gallery6.jpg",
-    title: "Commercial Electrical",
-  },
-  {
-    id: 7,
-    image: "/images/gallery/gallery7.jpg",
-    title: "Generator Installation",
-  },
-  {
-    id: 8,
-    image: "/images/gallery/gallery8.jpg",
-    title: "Electrical Maintenance",
-  },
-];
+import { useState } from "react";
+import Link from "next/link";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+const galleryImages = Array.from({ length: 27 }, (_, index) => ({
+  id: index + 1,
+  image: `/images/gallery/gallery${index + 1}.jpg`,
+}));
 
 export default function GalleryPage() {
+  const [index, setIndex] = useState(-1);
+
   return (
     <main className="min-h-screen bg-gray-100">
-
       {/* Hero */}
       <section className="bg-gray-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl font-bold">
-            Our Gallery
-          </h1>
+          <h1 className="text-5xl font-bold">Project Gallery</h1>
 
           <p className="mt-6 text-gray-300 text-lg max-w-2xl mx-auto">
             Explore some of our completed electrical projects,
             installations, repairs and commercial work.
           </p>
+
+          <div className="mt-8">
+            <Link
+              href="/"
+              className="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-6 py-3 rounded-lg transition"
+            >
+              ← Back to Home
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Gallery */}
       <section className="max-w-7xl mx-auto px-6 py-16">
-
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {galleryImages.map((item) => (
             <div
               key={item.id}
-              className="group bg-white rounded-2xl shadow-lg overflow-hidden"
+              onClick={() => setIndex(item.id - 1)}
+              className="cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-300"
             >
-              <div className="relative h-72 overflow-hidden">
-
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-110"
-                />
-
-              </div>
-
-              <div className="p-5">
-
-                <h3 className="text-xl font-semibold">
-                  {item.title}
-                </h3>
-
-              </div>
+              <img
+                src={item.image}
+                alt={`Gallery ${item.id}`}
+                className="w-full h-72 object-cover hover:scale-110 transition-transform duration-500"
+              />
             </div>
           ))}
-
         </div>
-
       </section>
 
+      {/* Lightbox */}
+      <Lightbox
+        open={index >= 0}
+        close={() => setIndex(-1)}
+        index={index}
+        slides={galleryImages.map((item) => ({
+          src: item.image,
+        }))}
+      />
     </main>
   );
 }
