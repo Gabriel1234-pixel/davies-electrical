@@ -53,7 +53,7 @@ export default function Contact() {
           </h2>
 
           <p className="text-gray-600 mt-5 text-lg max-w-2xl mx-auto">
-            Have an electrical project? Contact Davies Electrical Solutions today.
+            Need electrical help? Contact Davies Electrical Solutions today.
           </p>
 
         </div>

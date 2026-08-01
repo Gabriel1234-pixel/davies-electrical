@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
 
           <p className="mt-5 text-lg text-gray-600 max-w-2xl mx-auto">
             We deliver safe, reliable and professional electrical services for
-            homes, businesses and commercial projects.
+            homes, businesses and commercial spaces.
           </p>
 
         </div>

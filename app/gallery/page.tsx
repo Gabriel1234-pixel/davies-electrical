@@ -18,10 +18,10 @@ export default function GalleryPage() {
       {/* Hero */}
       <section className="bg-gray-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h1 className="text-5xl font-bold">Project Gallery</h1>
+          <h1 className="text-5xl font-bold">Gallery</h1>
 
           <p className="mt-6 text-gray-300 text-lg max-w-2xl mx-auto">
-            Explore some of our completed electrical projects,
+            Explore some of our completed electrical work,
             installations, repairs and commercial work.
           </p>
 

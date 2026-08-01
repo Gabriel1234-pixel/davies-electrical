@@ -40,7 +40,6 @@ Quick Links
 
 <li>Home</li>
 <li>Services</li>
-<li>Projects</li>
 <li>Contact</li>
 
 </ul>

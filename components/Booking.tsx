@@ -170,7 +170,7 @@ export default function Booking() {
 
             <textarea
               name="message"
-              placeholder="Describe your project or problem"
+              placeholder="Describe your electrical need"
               value={formData.message}
               onChange={handleChange}
               rows={5}

@@ -81,7 +81,7 @@ You Can Trust
 
 
 <p className="text-gray-400 mt-5 max-w-2xl mx-auto">
-From home installations to commercial projects,
+From home installations to commercial work,
 Davies Electrical delivers safe, reliable and
 modern electrical solutions.
 </p>

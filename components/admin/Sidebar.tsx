@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   LayoutDashboard,
   ClipboardList,
-  FolderKanban,
   Settings,
   LogOut,
 } from "lucide-react";
@@ -19,11 +18,6 @@ const menu = [
     title: "Service Requests",
     href: "/admin/requests",
     icon: ClipboardList,
-  },
-  {
-    title: "Projects",
-    href: "/admin/projects",
-    icon: FolderKanban,
   },
   {
     title: "Settings",

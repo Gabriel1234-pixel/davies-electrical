@@ -25,12 +25,12 @@ export default function Gallery() {
 
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900">
-            Our Recent Projects
+            Our Recent Work
           </h2>
 
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
             Take a look at some of our recent electrical installations,
-            lighting projects and maintenance work.
+            lighting work and maintenance services.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export default function Gallery() {
             >
               <img
                 src={img}
-                alt={`Project ${i + 1}`}
+                alt={`Work ${i + 1}`}
                 className="w-full h-72 object-cover hover:scale-110 transition duration-500"
               />
             </div>
