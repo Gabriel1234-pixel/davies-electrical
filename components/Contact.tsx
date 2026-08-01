@@ -1,39 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export default function Contact() {
-  const [settings, setSettings] = useState({
-    phone: "",
-    email: "",
-    address: "",
-    businessHours: "",
-  });
-
-  useEffect(() => {
-    async function loadSettings() {
-      try {
-        const res = await fetch("/api/settings");
-
-        if (!res.ok) return;
-
-        const data = await res.json();
-
-        setSettings({
-          phone: data.phone || "",
-          email: data.email || "",
-          address: data.address || "",
-          businessHours: data.business_hours || "",
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    loadSettings();
-  }, []);
-
   return (
     <section
       id="contact"
@@ -41,7 +10,6 @@ export default function Contact() {
     >
       <div className="max-w-7xl mx-auto">
 
-        {/* Heading */}
         <div className="text-center mb-14">
 
           <p className="text-yellow-500 font-bold uppercase tracking-wider">
@@ -53,12 +21,11 @@ export default function Contact() {
           </h2>
 
           <p className="text-gray-600 mt-5 text-lg max-w-2xl mx-auto">
-            Need electrical help? Contact Davies Electrical Solutions today.
+            Have an electrical project? Contact Davies Electrical Solutions today.
           </p>
 
         </div>
 
-        {/* Contact Cards */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
 
           {/* Phone */}
@@ -70,9 +37,12 @@ export default function Contact() {
               Call Us
             </h3>
 
-            <p className="text-gray-600 mt-3">
-              {settings.phone}
-            </p>
+            <a
+              href="tel:+254738422374"
+              className="text-gray-600 mt-3 block hover:text-yellow-500"
+            >
+              +254 738422374
+            </a>
 
           </div>
 
@@ -85,9 +55,12 @@ export default function Contact() {
               Email
             </h3>
 
-            <p className="text-gray-600 mt-3 break-all">
-              {settings.email}
-            </p>
+            <a
+              href="mailto:davidvince026@gmail.com"
+              className="text-gray-600 mt-3 block hover:text-yellow-500"
+            >
+              davidvince026@gmail.com
+            </a>
 
           </div>
 
@@ -101,7 +74,7 @@ export default function Contact() {
             </h3>
 
             <p className="text-gray-600 mt-3">
-              {settings.address}
+              Nairobi, Kenya
             </p>
 
           </div>
@@ -116,7 +89,7 @@ export default function Contact() {
             </h3>
 
             <p className="text-gray-600 mt-3">
-              {settings.businessHours}
+              Mon - Sat : 8:00 AM - 8:00 PM
             </p>
 
           </div>
