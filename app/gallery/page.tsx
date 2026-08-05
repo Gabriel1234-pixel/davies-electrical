@@ -5,7 +5,7 @@ import Link from "next/link";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
-const galleryImages = Array.from({ length: 27 }, (_, index) => ({
+const galleryImages = Array.from({ length: 29 }, (_, index) => ({
   id: index + 1,
   image: `/images/gallery/gallery${index + 1}.jpg`,
 }));

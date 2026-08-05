@@ -10,6 +10,7 @@ import WhyChooseUs from "@/components/WhychooseUs";
 
 import Booking from "@/components/Booking";
 import WhatsApp from "@/components/WhatsApp";
+import Videos from "@/components/Videos";
 export default function Home() {
   return (
     <>
@@ -21,7 +22,7 @@ export default function Home() {
 <WhyChooseUs />
 <Services />
 <Gallery />
-
+<Videos />
 <Testimonials />
 <Booking />
 <Contact />

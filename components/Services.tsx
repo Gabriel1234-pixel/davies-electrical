@@ -5,9 +5,11 @@ import {
   Wrench,
   Sun,
   Building2,
-  Video
+  Video,
+  Volume2
 } from "lucide-react";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 
@@ -47,6 +49,14 @@ const services = [
       "Professional installation of CCTV surveillance systems for homes, businesses, offices, and institutions to improve security and provide 24/7 monitoring.",
     icon: Video,
   }
+  ,
+  {
+  title: "Sound System Installation",
+  description:
+    "Professional installation of home, office, church and commercial sound systems. We supply and install amplifiers, speakers, mixers, microphones and complete public address (PA) systems for clear, high-quality audio.",
+  icon: Volume2,
+  image: "/images/services/sound-system.jpg",
+}
 ];
 
 
@@ -129,6 +139,7 @@ transition
 
 
 >
+
 
 
 <div className="
