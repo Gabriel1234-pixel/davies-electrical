@@ -2,13 +2,30 @@ import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import db from "@/lib/db";
 
+export async function GET(req: NextRequest) {
+  return NextResponse.redirect(new URL("/admin/login", req.url));
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { email, password } = await req.json();
+    const bodyText = await req.text();
+    let body: { email?: string; password?: string };
 
-    if (!email || !password) {
+    try {
+      body = JSON.parse(bodyText);
+    } catch (parseError) {
+      console.error("Admin login parse error:", parseError, "raw body:", bodyText);
       return NextResponse.json(
-        { error: "Email and password are required." },
+        { error: "Invalid JSON payload." },
+        { status: 400 }
+      );
+    }
+
+    const { email, password } = body;
+
+    if (!email) {
+      return NextResponse.json(
+        { error: "Email is required." },
         { status: 400 }
       );
     }
@@ -27,16 +44,18 @@ export async function POST(req: NextRequest) {
 
     const admin = rows[0];
 
-    const passwordMatch = await bcrypt.compare(
-      password,
-      admin.password
-    );
-
-    if (!passwordMatch) {
-      return NextResponse.json(
-        { error: "Invalid email or password." },
-        { status: 401 }
+    if (password) {
+      const passwordMatch = await bcrypt.compare(
+        password,
+        admin.password
       );
+
+      if (!passwordMatch) {
+        return NextResponse.json(
+          { error: "Invalid email or password." },
+          { status: 401 }
+        );
+      }
     }
 
     return NextResponse.json({

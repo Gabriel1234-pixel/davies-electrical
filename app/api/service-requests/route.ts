@@ -14,7 +14,7 @@ export async function GET() {
 
     return NextResponse.json(rows);
   } catch (error) {
-    console.error(error);
+    console.error("GET SERVICE REQUESTS ERROR:", error);
 
     return NextResponse.json(
       {
@@ -41,7 +41,9 @@ export async function POST(req: NextRequest) {
       message,
     } = body;
 
-    // Validate empty fields
+    // ==========================
+    // VALIDATE EMPTY FIELDS
+    // ==========================
     if (
       !name ||
       !phone ||
@@ -62,7 +64,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate phone number
+    // ==========================
+    // VALIDATE PHONE NUMBER
+    // ==========================
     const phoneRegex = /^[0-9+\-\s]{10,15}$/;
 
     if (!phoneRegex.test(phone.trim())) {
@@ -76,6 +80,33 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // ==========================
+    // TEMPORARY DATABASE CHECK
+    // ==========================
+    const [dbInfo]: any = await db.query(`
+      SELECT DATABASE() AS database_name
+    `);
+
+    console.log(
+      "DATABASE USED BY VERCEL:",
+      dbInfo
+    );
+
+    // ==========================
+    // CHECK SERVICE REQUEST TABLE
+    // ==========================
+    const [tableCheck]: any = await db.query(`
+      SHOW TABLES LIKE 'service_requests'
+    `);
+
+    console.log(
+      "SERVICE REQUEST TABLE:",
+      tableCheck
+    );
+
+    // ==========================
+    // INSERT REQUEST
+    // ==========================
     await db.query(
       `
       INSERT INTO service_requests
@@ -103,7 +134,10 @@ export async function POST(req: NextRequest) {
       message: "Request submitted successfully.",
     });
   } catch (error) {
-    console.error(error);
+    console.error(
+      "CREATE SERVICE REQUEST ERROR:",
+      error
+    );
 
     return NextResponse.json(
       {
@@ -156,7 +190,10 @@ export async function PUT(req: NextRequest) {
       message: "Status updated successfully.",
     });
   } catch (error) {
-    console.error(error);
+    console.error(
+      "UPDATE SERVICE REQUEST ERROR:",
+      error
+    );
 
     return NextResponse.json(
       {
@@ -200,15 +237,18 @@ export async function DELETE(req: NextRequest) {
       message: "Request deleted successfully.",
     });
   } catch (error: any) {
-  console.error(error);
+    console.error(
+      "DELETE SERVICE REQUEST ERROR:",
+      error
+    );
 
-  return NextResponse.json(
-    {
-      error: error.message,
-    },
-    {
-      status: 500,
-    }
-  );
-}
+    return NextResponse.json(
+      {
+        error: error.message,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 }

@@ -7,7 +7,6 @@ export default function AdminLoginPage() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleLogin(e: React.FormEvent) {
@@ -23,7 +22,6 @@ export default function AdminLoginPage() {
         },
         body: JSON.stringify({
           email,
-          password,
         }),
       });
 
@@ -76,23 +74,6 @@ export default function AdminLoginPage() {
               value={email}
               onChange={(e) =>
                 setEmail(e.target.value)
-              }
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block mb-2 font-medium">
-              Password
-            </label>
-
-            <input
-              type="password"
-              placeholder="Enter password"
-              className="w-full border rounded-lg p-3"
-              value={password}
-              onChange={(e) =>
-                setPassword(e.target.value)
               }
               required
             />
