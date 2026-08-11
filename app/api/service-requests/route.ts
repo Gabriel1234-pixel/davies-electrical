@@ -80,9 +80,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ==========================
-    // TEMPORARY DATABASE CHECK
-    // ==========================
+    // ==================================================
+    // TEMPORARY DATABASE DIAGNOSTICS
+    // ==================================================
+
+    // Check which database Vercel is using
     const [dbInfo]: any = await db.query(`
       SELECT DATABASE() AS database_name
     `);
@@ -92,9 +94,21 @@ export async function POST(req: NextRequest) {
       dbInfo
     );
 
-    // ==========================
-    // CHECK SERVICE REQUEST TABLE
-    // ==========================
+    // Check which MySQL server Vercel is using
+    const [serverInfo]: any = await db.query(`
+      SELECT
+        @@hostname AS hostname,
+        @@port AS port,
+        @@server_uuid AS server_uuid,
+        DATABASE() AS database_name
+    `);
+
+    console.log(
+      "VERCEL MYSQL SERVER:",
+      serverInfo
+    );
+
+    // Check whether Vercel can see service_requests
     const [tableCheck]: any = await db.query(`
       SHOW TABLES LIKE 'service_requests'
     `);
@@ -104,9 +118,10 @@ export async function POST(req: NextRequest) {
       tableCheck
     );
 
-    // ==========================
-    // INSERT REQUEST
-    // ==========================
+    // ==================================================
+    // INSERT SERVICE REQUEST
+    // ==================================================
+
     await db.query(
       `
       INSERT INTO service_requests
@@ -133,7 +148,8 @@ export async function POST(req: NextRequest) {
       success: true,
       message: "Request submitted successfully.",
     });
-  } catch (error) {
+
+  } catch (error: any) {
     console.error(
       "CREATE SERVICE REQUEST ERROR:",
       error
@@ -189,6 +205,7 @@ export async function PUT(req: NextRequest) {
       success: true,
       message: "Status updated successfully.",
     });
+
   } catch (error) {
     console.error(
       "UPDATE SERVICE REQUEST ERROR:",
@@ -236,6 +253,7 @@ export async function DELETE(req: NextRequest) {
       success: true,
       message: "Request deleted successfully.",
     });
+
   } catch (error: any) {
     console.error(
       "DELETE SERVICE REQUEST ERROR:",
