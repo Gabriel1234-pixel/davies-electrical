@@ -110,6 +110,7 @@ export default function Booking() {
             <p>☀️ Solar Installation</p>
             <p>🏢 Commercial Electrical Work</p>
             <p>📹 CCTV Installation</p>
+            <p>🔊 Sound System Installation</p>
           </div>
         </div>
 
@@ -165,6 +166,9 @@ export default function Booking() {
               </option>
               <option value="CCTV Installation">
                 CCTV Installation
+              </option>
+              <option value="Sound System Installation">
+                Sound System Installation
               </option>
             </select>
 

@@ -62,6 +62,7 @@ Services
 <li>Solar Solutions</li>
 <li>Repairs</li>
 <li>Maintenance</li>
+<li>Sound System Installation</li>
 
 </ul>
 

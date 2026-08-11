@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
 import db from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   try {
     const { email, password } = await req.json();
+
+    if (!email || !password) {
+      return NextResponse.json(
+        { error: "Email and password are required." },
+        { status: 400 }
+      );
+    }
 
     const [rows]: any = await db.query(
       "SELECT * FROM admins WHERE email = ?",
@@ -19,9 +27,12 @@ export async function POST(req: NextRequest) {
 
     const admin = rows[0];
 
-    // For now we're comparing plain text passwords.
-    // Later we'll replace this with bcrypt.
-    if (admin.password !== password) {
+    const passwordMatch = await bcrypt.compare(
+      password,
+      admin.password
+    );
+
+    if (!passwordMatch) {
       return NextResponse.json(
         { error: "Invalid email or password." },
         { status: 401 }
@@ -36,9 +47,8 @@ export async function POST(req: NextRequest) {
         email: admin.email,
       },
     });
-
   } catch (error) {
-    console.error(error);
+    console.error("Admin login error:", error);
 
     return NextResponse.json(
       { error: "Internal Server Error" },
