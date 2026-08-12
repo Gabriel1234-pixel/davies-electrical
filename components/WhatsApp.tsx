@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function WhatsApp() {
-  const [whatsapp, setWhatsapp] = useState("254700000000");
+  const [whatsapp, setWhatsapp] = useState("254738422374");
 
   useEffect(() => {
     async function loadSettings() {
